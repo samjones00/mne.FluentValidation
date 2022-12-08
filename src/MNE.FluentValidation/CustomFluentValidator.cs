@@ -1,5 +1,4 @@
-﻿using System;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using FluentValidation;
 
 namespace MNE.FluentValidation
@@ -13,10 +12,7 @@ namespace MNE.FluentValidation
                 if (string.IsNullOrEmpty(x))
                     return false;
 
-            //^\s*(?:(?:[A-Za-z0-9+/]{4})+\s*)*[A-Za-z0-9+/]*={0,2}\s*$
-            var isMatch = Regex.IsMatch(x, @"^\s*(?:(?:[A-Za-z0-9+/]{4})+\s*)*[A-Za-z0-9+/]*={0,2}\s*$");
-
-                return isMatch;
+                return (x.Length % 4 == 0) && Regex.IsMatch(x, @"^[a-zA-Z0-9\+/]*={0,3}$", RegexOptions.None);
 
             }).WithMessage("Data is not a valid base64 value.");
         }

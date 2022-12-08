@@ -1,4 +1,4 @@
-using FluentAssertions;
+using FluentValidation.TestHelper;
 using MNE.FluentValidation.Test.Models;
 using MNE.FluentValidation.Test.Validators;
 using NUnit.Framework;
@@ -15,24 +15,42 @@ namespace MNE.FluentValidation.Test.Tests
             _sut = new FileUploadModelValidator();
         }
 
-        [Test]
-        public void ShouldFailValidation()
+        [TestCase("")]
+        [TestCase(" ")]
+        [TestCase(null)]
+        public void ShouldFailValidationGivenNullOrEmpty(string data)
         {
             // Arrange
             var model = new FileUploadModel
             {
-                Data = "nodgdtbase64encoded"
+                Data = data
             };
 
             // Act
-            var result = _sut.Validate(model);
+            var result = _sut.TestValidate(model);
 
             // Assert
-            result.Errors.Should().HaveCount(1);
+            result.ShouldHaveValidationErrorFor(x => x.Data).WithErrorMessage("Data is not a valid base64 value.");
         }
 
         [Test]
-        public void ShouldPassValidation()
+        public void ShouldFailValidationGivenInvalidString()
+        {
+            // Arrange
+            var model = new FileUploadModel
+            {
+                Data = "notbase64encoded"
+            };
+
+            // Act
+            var result = _sut.TestValidate(model);
+
+            // Assert
+            result.ShouldHaveValidationErrorFor(x => x.Data).WithErrorMessage("Data is not a valid base64 value.");
+        }
+
+        [Test]
+        public void ShouldPassValidationGivenBase64EncodedString()
         {
             // Arrange
             var model = new FileUploadModel
@@ -41,10 +59,10 @@ namespace MNE.FluentValidation.Test.Tests
             };
 
             // Act
-            var result = _sut.Validate(model);
+            var result = _sut.TestValidate(model);
 
             // Assert
-            result.Errors.Should().BeEmpty();
+            result.ShouldNotHaveValidationErrorFor(x => x.Data);
         }
     }
 }
