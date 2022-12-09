@@ -2,6 +2,16 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Authors>Sam Jones</Authors>
+    <Company>Sam Jones</Company>
+    <Copyright>Copyright 2022 - Sam Jones</Copyright>
+    <PackageTags>FluentValidation base64 encoding</PackageTags>
+    <Version>1.0.2</Version>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageProjectUrl>https://github.com/samjones00/mne.FluentValidation</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/samjones00/mne.FluentValidation</RepositoryUrl>
+    <Description>A simple custom validator to check if a string is base64 encoded.</Description>
   </PropertyGroup>
 
   <ItemGroup>
