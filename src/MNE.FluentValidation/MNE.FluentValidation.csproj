@@ -7,13 +7,21 @@
     <Company>Sam Jones</Company>
     <Copyright>Copyright 2022 - Sam Jones</Copyright>
     <PackageTags>FluentValidation base64 encoding</PackageTags>
-    <Version>1.0.2</Version>
+    <Version>1.0.3</Version>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageProjectUrl>https://github.com/samjones00/mne.FluentValidation</PackageProjectUrl>
     <RepositoryUrl>https://github.com/samjones00/mne.FluentValidation</RepositoryUrl>
     <Description>A simple custom validator to check if a string is base64 encoded.</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Include="..\..\README.md" Link="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+  
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="11.4.0" />
     <PackageReference Include="System.Memory" Version="4.5.5" />
