@@ -27,6 +27,6 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore ./MNE.FluentValidation.sln
     - name: Build
-      run: dotnet build ./MNE.FluentValidation/MNE.FluentValidation.csproj --no-restore
+      run: dotnet build ./MNE.FluentValidation.sln --no-restore
     - name: Test
-      run: dotnet test ./MNE.FluentValidation.Test/MNE.FluentValidation.Test.csproj --no-build --verbosity normal
+      run: dotnet test ./MNE.FluentValidation.sln --no-build --verbosity normal
