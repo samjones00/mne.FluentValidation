@@ -1,3 +1,4 @@
+using AutoFixture;
 using FluentValidation.TestHelper;
 using MNE.FluentValidation.Test.Models;
 using MNE.FluentValidation.Test.Validators;
@@ -8,11 +9,13 @@ namespace MNE.FluentValidation.Test.Tests
     public class CustomFluentValidatorTests
     {
         private FileUploadModelValidator _sut;
+        private Fixture _fixture;
 
         [SetUp]
         public void Setup()
         {
             _sut = new FileUploadModelValidator();
+            _fixture = new Fixture();
         }
 
         [TestCase("")]
@@ -39,7 +42,7 @@ namespace MNE.FluentValidation.Test.Tests
             // Arrange
             var model = new FileUploadModel
             {
-                Data = "notbase64encoded"
+                Data = _fixture.Create<string>()
             };
 
             // Act
