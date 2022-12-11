@@ -5,9 +5,13 @@ name: .NET
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main","action-fix" ]
   pull_request:
     branches: [ "main" ]
+
+defaults:
+ run:
+  working-directory: ./src
 
 jobs:
   build:
@@ -21,8 +25,8 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore ./MNE.FluentValidation.sln
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build ./MNE.FluentValidation.sln --no-restore
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test ./MNE.FluentValidation.sln --no-build --verbosity normal
